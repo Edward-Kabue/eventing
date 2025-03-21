@@ -16,12 +16,12 @@ export async function up(queryInterface: QueryInterface) {
       allowNull: false,
       unique: true,
     },
-    createdAt: {
+    created_at: {
       type: DataTypes.DATE,
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
-    updatedAt: {
+    updated_at: {
       type: DataTypes.DATE,
       allowNull: false,
       defaultValue: DataTypes.NOW,
@@ -36,4 +36,5 @@ export async function up(queryInterface: QueryInterface) {
 export async function down(queryInterface: QueryInterface) {
   await queryInterface.dropTable('users');
 }
+
 

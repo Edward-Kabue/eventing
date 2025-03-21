@@ -33,6 +33,19 @@ export class UserController {
       });
     }
   }
+  public async create(req: Request, res: Response<User | ApiError>): Promise<void> {
+    try {
+      const user = await UserModel.create(req.body);
+      res.status(201).json(user);
+    } catch (error) {
+      res.status(500).json({
+        "code": "INTERNAL_ERROR",
+        "message": "Failed to create user",
+        "details": error instanceof Error ? { "message": error.message } : undefined
+      });
+    }
+  }
 }
 
 export default new UserController();
+

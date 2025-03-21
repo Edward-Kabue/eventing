@@ -1,5 +1,5 @@
 import { Options } from 'swagger-jsdoc';
-import { User, ApiError } from '../types/schemas';
+import { User, ApiError } from '../types/index';
 
 const options: Options = {
   definition: {
@@ -37,6 +37,10 @@ const options: Options = {
               type: 'string',
               format: 'email',
               description: 'User email',
+            },
+            role: {
+              type: 'string',
+              description: 'User role',
             },
             created_at: {
               type: 'string',

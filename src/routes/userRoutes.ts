@@ -43,4 +43,26 @@ router.get('/', userController.getAll);
  */
 router.get('/:id', userController.getById);
 
+/**
+ * @swagger
+ * /api/users/create:
+ *   post:
+ *     summary: Create a new user
+ *     tags: [Users]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
+ *     responses:
+ *       201:
+ *         description: User created
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ */
+router.post('/create', userController.create);
+
 export default router;
