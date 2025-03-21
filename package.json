@@ -3,9 +3,21 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www",
-    "debug": "nodemon --inspect ./bin/www"
+    "start": "node dist/server.js",
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "build": "tsc",
+    "lint": "eslint . --ext .ts",
+    "test": "jest",
+    "typecheck": "tsc --noEmit",
+    "db:migrate": "npm run build && sequelize-cli db:migrate",
+    "db:migrate:undo": "npm run build && sequelize-cli db:migrate:undo",
+    "db:migrate:undo:all": "npm run build && sequelize-cli db:migrate:undo:all",
+    "db:seed:all": "npm run build && sequelize-cli db:seed:all",
+    "db:seed:undo:all": "npm run build && sequelize-cli db:seed:undo:all",
+    "db:create": "npm run build && sequelize-cli db:create",
+    "db:drop": "npm run build && sequelize-cli db:drop",
+    "migration:generate": "npm run build && sequelize-cli migration:generate --name",
+    "seed:generate": "npm run build && sequelize-cli seed:generate --name"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -23,6 +35,16 @@
     "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
-    "nodemon": "^3.0.1"
+    "@types/cookie-parser": "^1.4.8",
+    "@types/express": "^5.0.1",
+    "@types/morgan": "^1.9.9",
+    "@types/node": "^22.13.11",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-express": "^4.1.8",
+    "@typescript-eslint/eslint-plugin": "^8.27.0",
+    "@typescript-eslint/parser": "^8.27.0",
+    "nodemon": "^3.0.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.2"
   }
 }

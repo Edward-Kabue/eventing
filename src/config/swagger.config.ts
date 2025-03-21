@@ -1,6 +1,7 @@
-const swaggerJsdoc = require('swagger-jsdoc');
+import { Options } from 'swagger-jsdoc';
+import { User, ApiError } from '../types/schemas';
 
-const options = {
+const options: Options = {
   definition: {
     openapi: '3.0.0',
     info: {
@@ -77,7 +78,7 @@ const options = {
       },
     },
   },
-  apis: ['./routes/*.js'], // Path to the API routes
+  apis: ['./src/routes/*.ts'], // Updated path for TypeScript files
 };
 
-module.exports = swaggerJsdoc(options);
+export default options;
