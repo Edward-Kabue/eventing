@@ -61,8 +61,18 @@ EventModel.init(
       allowNull: false,
       defaultValue: EventStatus.DRAFT,
     },
-    createdAt: "",
-    updatedAt: "",
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+      field: "created_at",
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+      field: "updated_at",
+    },
   },
   {
     sequelize,

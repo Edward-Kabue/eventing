@@ -2,7 +2,7 @@ import EventModel from "../models/event";
 import { CreateEventInput, Event, EventStatus } from "../types";
 import { validateCreateEvent } from "../validators/eventValidator";
 import { NotFoundError } from "../utils/errors";
-import { isNumberObject } from "util/types";
+import { CreationAttributes } from "sequelize";
 
 export const createEvent = async (
   eventData: CreateEventInput,
@@ -19,10 +19,7 @@ export const createEvent = async (
     price: eventData.price,
     creatorId,
     status: EventStatus.DRAFT,
-    id: isNumberObject(eventData.id) ? eventData.id : 0,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  });
+  } as CreationAttributes<EventModel>);
 
   return event.get();
 };
