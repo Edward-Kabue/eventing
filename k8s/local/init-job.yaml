@@ -1,0 +1,47 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: db-init
+spec:
+  template:
+    spec:
+      containers:
+      - name: db-init
+        image: eventing-api:latest
+        imagePullPolicy: Never
+        env:
+        - name: NODE_ENV
+          value: "development"
+        - name: DB_HOST
+          value: "postgres-service"
+        - name: DB_PORT
+          value: "5432"
+        - name: DB_NAME
+          value: "eventing"
+        - name: DB_USER
+          value: "postgres"
+        - name: DB_PASSWORD
+          value: "postgres_password"
+        # Add production environment variables with development values
+        - name: PROD_DB_USER
+          value: "postgres"
+        - name: PROD_DB_PASSWORD
+          value: "postgres_password"
+        - name: PROD_DB_NAME
+          value: "eventing"
+        - name: PROD_DB_HOST
+          value: "postgres-service"
+        - name: PROD_DB_PORT
+          value: "5432"
+        command: ["/bin/sh", "-c"]
+        args:
+        - |
+          echo "Waiting for postgres..."
+          while ! nc -z postgres-service 5432; do
+            sleep 1
+          done
+          echo "PostgreSQL started"
+          npm run db:migrate
+          npm run db:seed:all
+      restartPolicy: OnFailure
+

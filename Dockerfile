@@ -14,8 +14,14 @@ COPY . .
 # Build TypeScript code
 RUN npm run build
 
-# Expose the port the app runs on
+# Make startup script executable
+COPY scripts/startup.sh /usr/src/app/startup.sh
+RUN chmod +x /usr/src/app/startup.sh
+
 EXPOSE 3000
 
-# Start the application
-CMD ["npm", "start"]
+CMD ["/usr/src/app/startup.sh"]
+
+
+
+
