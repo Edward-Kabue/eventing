@@ -20,7 +20,7 @@ export const validateCreateEvent = (data: Partial<CreateEventInput>): void => {
   if (!data.capacity || data.capacity < 1) {
     throw new ValidationError("Capacity must be at least 1");
   }
-  if (!data.price || data.price < 0) {
+  if (data.price === undefined || data.price === null || data.price < 0) {
     throw new ValidationError("Price cannot be negative");
   }
 };
