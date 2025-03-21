@@ -104,6 +104,66 @@ const options: Options = {
             },
           },
         },
+        Event: {
+          type: "object",
+          required: [
+            "title",
+            "description",
+            "date",
+            "location",
+            "capacity",
+            "price",
+          ],
+          properties: {
+            id: {
+              type: "integer",
+              description: "Event ID auto-generated",
+            },
+            title: {
+              type: "string",
+              description: "Event title",
+            },
+            description: {
+              type: "string",
+              description: "Event description",
+            },
+            date: {
+              type: "string",
+              format: "date-time",
+              description: "Event date",
+            },
+            location: {
+              type: "string",
+              description: "Event location",
+            },
+            capacity: {
+              type: "integer",
+              description: "Event capacity",
+            },
+            price: {
+              type: "number",
+              description: "Event price",
+            },
+            creatorId: {
+              type: "integer",
+              description: "Event creator ID",
+            },
+            status: {
+              type: "string",
+              description: "Event status",
+            },
+            created_at: {
+              type: "string",
+              format: "date-time",
+              description: "Creation date",
+            },
+            updated_at: {
+              type: "string",
+              format: "date-time",
+              description: "Update date",
+            },
+          },
+        },
       },
       securitySchemes: {
         bearerAuth: {
