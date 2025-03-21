@@ -38,10 +38,26 @@ const config: DatabaseConfig = {
     seederStorageTableName: "sequelize_seeds",
   },
   production: {
-    username: process.env.PROD_DB_USER || "postgres",
-    password: process.env.PROD_DB_PASSWORD || "",
-    database: process.env.PROD_DB_NAME || "eventing_prod",
-    host: process.env.PROD_DB_HOST || "localhost",
+    username:
+      process.env.PROD_DB_USER ||
+      (() => {
+        throw new Error("Production database username must be set!");
+      })(),
+    password:
+      process.env.PROD_DB_PASSWORD ||
+      (() => {
+        throw new Error("Production database password must be set!");
+      })(),
+    database:
+      process.env.PROD_DB_NAME ||
+      (() => {
+        throw new Error("Production database name must be set!");
+      })(),
+    host:
+      process.env.PROD_DB_HOST ||
+      (() => {
+        throw new Error("Production database host must be set!");
+      })(),
     port: parseInt(process.env.PROD_DB_PORT || "5432", 10),
     dialect: "postgres",
     migrationStorageTableName: "sequelize_migrations",
