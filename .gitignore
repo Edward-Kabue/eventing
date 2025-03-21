@@ -9,6 +9,9 @@ yarn-error.log
 .env.local
 .env.*.local
 
+# Local development commands and notes
+.commands
+
 # Logs
 logs
 *.log
