@@ -27,6 +27,18 @@ export interface DatabaseConfig {
   username: string;
   password: string;
   database: string;
+  dialect?: "postgres";
+  logging?: boolean;
+  pool?: {
+    max: number;
+    min: number;
+    acquire: number;
+    idle: number;
+  };
+  retry?: {
+    max: number;
+    match: RegExp[];
+  };
 }
 
 export interface ApiError {
@@ -47,3 +59,4 @@ export interface RolePermission {
   roleId: string;
   permissionId: number;
 }
+

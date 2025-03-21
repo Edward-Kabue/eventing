@@ -14,15 +14,7 @@ const config: DatabaseConfig = {
   username: process.env.DB_USER || "postgres",
   password: process.env.DB_PASSWORD || "",
   database: process.env.DB_NAME || "eventing",
-};
-
-const sequelize = new Sequelize({
   dialect: "postgres",
-  host: config.host,
-  port: config.port,
-  username: config.username,
-  password: config.password,
-  database: config.database,
   logging: false,
   pool: {
     max: 5,
@@ -41,7 +33,9 @@ const sequelize = new Sequelize({
       /SequelizeConnectionTimedOutError/,
     ],
   },
-});
+};
+
+const sequelize = new Sequelize(config);
 
 export async function initializeDatabase(): Promise<void> {
   try {
@@ -64,3 +58,4 @@ export async function closeDatabase(): Promise<void> {
 }
 
 export default sequelize;
+
