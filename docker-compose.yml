@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   app:
     build: .
@@ -12,13 +10,15 @@ services:
       - DB_NAME=eventing
       - DB_USER=postgres
       - DB_PASSWORD=postgres_password
+      # Add production database environment variables
+      - PROD_DB_USER=postgres
+      - PROD_DB_PASSWORD=postgres_password
+      - PROD_DB_NAME=eventing
+      - PROD_DB_HOST=postgres
+      - PROD_DB_PORT=5432
     depends_on:
       postgres:
         condition: service_healthy
-    volumes:
-      - ./src:/usr/src/app/src
-      - ./dist:/usr/src/app/dist
-    command: npm run dev
 
   postgres:
     image: postgres:16-alpine
@@ -38,3 +38,8 @@ services:
 
 volumes:
   postgres_data:
+
+
+
+
+
