@@ -62,13 +62,13 @@ EventModel.init(
       defaultValue: EventStatus.DRAFT,
     },
     createdAt: "",
-    updatedAt: ""
+    updatedAt: "",
   },
   {
     sequelize,
     tableName: "events",
     underscored: true,
-  }
+  },
 );
 
 EventModel.belongsTo(UserModel, { foreignKey: "creatorId", as: "creator" });

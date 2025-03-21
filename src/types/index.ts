@@ -77,14 +77,13 @@ export interface Event {
 export enum EventStatus {
   DRAFT = "draft",
   PUBLISHED = "published",
-  CANCELLED = "cancelled"
+  CANCELLED = "cancelled",
 }
 
-export interface CreateEventInput extends Omit<Event, "id" | "createdAt" | "updatedAt" | "status"> {
+export interface CreateEventInput
+  extends Omit<Event, "id" | "createdAt" | "updatedAt" | "status"> {
   id?: never;
   createdAt?: never;
   updatedAt?: never;
   status?: EventStatus;
 }
-
-

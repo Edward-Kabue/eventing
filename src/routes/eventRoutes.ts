@@ -33,7 +33,7 @@ router.post(
   authenticate,
   requireRole([UserRole.ADMIN, UserRole.VENDOR]),
   checkPermission("create:event"),
-  create
+  create,
 );
 
 /**

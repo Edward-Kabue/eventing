@@ -2,15 +2,14 @@ import EventModel from "../models/event";
 import { CreateEventInput, Event, EventStatus } from "../types";
 import { validateCreateEvent } from "../validators/eventValidator";
 import { NotFoundError } from "../utils/errors";
-import { NUMBER } from "sequelize";
 import { isNumberObject } from "util/types";
 
 export const createEvent = async (
   eventData: CreateEventInput,
-  creatorId: number
+  creatorId: number,
 ): Promise<Event> => {
   validateCreateEvent(eventData);
-  
+
   const event = await EventModel.create({
     title: eventData.title,
     description: eventData.description,
@@ -22,10 +21,9 @@ export const createEvent = async (
     status: EventStatus.DRAFT,
     id: isNumberObject(eventData.id) ? eventData.id : 0,
     createdAt: new Date(),
-    updatedAt: new Date()
-
+    updatedAt: new Date(),
   });
-  
+
   return event.get();
 };
 
@@ -40,6 +38,3 @@ export const findById = async (id: number): Promise<Event> => {
   }
   return event.get();
 };
-
-
-
