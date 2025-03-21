@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: eventing-api
+spec:
+  selector:
+    app: eventing-api
+  ports:
+  - port: 3000
+    targetPort: 3000
+  type: LoadBalancer  # This works with Docker Desktop

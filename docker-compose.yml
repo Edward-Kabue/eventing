@@ -1,0 +1,45 @@
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=eventing
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres_password
+      # Add production database environment variables
+      - PROD_DB_USER=postgres
+      - PROD_DB_PASSWORD=postgres_password
+      - PROD_DB_NAME=eventing
+      - PROD_DB_HOST=postgres
+      - PROD_DB_PORT=5432
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:16-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=eventing
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
+
+
+
+
+
