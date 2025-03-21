@@ -1,0 +1,25 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/database",
+    "rootDir": "../../src",
+    "baseUrl": "../../src"
+  },
+  "include": [
+    "./**/*.ts",
+    "../**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
+
+
+
+
+
+
+
+
+
+
