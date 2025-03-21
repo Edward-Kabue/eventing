@@ -1,7 +1,7 @@
 export enum UserRole {
-  ADMIN = 'admin',
-  VENDOR = 'vendor',
-  CUSTOMER = 'customer'
+  ADMIN = "admin",
+  VENDOR = "vendor",
+  CUSTOMER = "customer",
 }
 
 export interface User {
@@ -12,6 +12,13 @@ export interface User {
   role: UserRole;
   createdAt: Date;
   updatedAt: Date;
+}
+
+export interface CreateUserInput
+  extends Omit<User, "id" | "createdAt" | "updatedAt"> {
+  id?: never;
+  createdAt?: never;
+  updatedAt?: never;
 }
 
 export interface DatabaseConfig {
@@ -40,5 +47,3 @@ export interface RolePermission {
   roleId: string;
   permissionId: number;
 }
-
-

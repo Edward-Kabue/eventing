@@ -1,7 +1,6 @@
-import { Request, Response, NextFunction } from 'express';
-import UserModel from '../models/user';
-import PermissionModel from '../models/permission';
-import { User } from '../types';
+import { Request, Response, NextFunction } from "express";
+import UserModel from "../models/user";
+import PermissionModel from "../models/permission";
 
 // Extend the Express Request interface
 interface AuthenticatedRequest extends Request {
@@ -11,37 +10,45 @@ interface AuthenticatedRequest extends Request {
 }
 
 export const checkPermission = (requiredPermission: string) => {
-  return async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
+  return async (
+    req: AuthenticatedRequest,
+    res: Response,
+    next: NextFunction,
+  ) => {
     try {
       const userId = req.user?.id;
       if (!userId) {
         return res.status(401).json({
-          code: 'UNAUTHORIZED',
-          message: 'Authentication required'
+          code: "UNAUTHORIZED",
+          message: "Authentication required",
         });
       }
 
       const user = await UserModel.findByPk(userId);
       if (!user) {
         return res.status(401).json({
-          code: 'UNAUTHORIZED',
-          message: 'User not found'
+          code: "UNAUTHORIZED",
+          message: "User not found",
         });
       }
 
       const permissions = await PermissionModel.findAll({
-        include: [{
-          model: UserModel,
-          where: { role: user.role },
-          attributes: []
-        }]
+        include: [
+          {
+            model: UserModel,
+            where: { role: user.role },
+            attributes: [],
+          },
+        ],
       });
 
-      const hasPermission = permissions.some(p => p.name === requiredPermission);
+      const hasPermission = permissions.some(
+        (p) => p.name === requiredPermission,
+      );
       if (!hasPermission) {
         return res.status(403).json({
-          code: 'FORBIDDEN',
-          message: 'Insufficient permissions'
+          code: "FORBIDDEN",
+          message: "Insufficient permissions",
         });
       }
 

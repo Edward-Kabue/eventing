@@ -1,5 +1,5 @@
-import { Router } from 'express';
-import { login } from '../controllers/authController';
+import { Router } from "express";
+import { login } from "../controllers/authController";
 
 const router = Router();
 
@@ -41,6 +41,6 @@ const router = Router();
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.post('/login', login);
+router.post("/login", login);
 
 export default router;

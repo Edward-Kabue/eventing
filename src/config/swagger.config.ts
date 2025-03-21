@@ -1,82 +1,82 @@
-import { Options } from 'swagger-jsdoc';
-import { User, ApiError } from '../types/index';
+import { Options } from "swagger-jsdoc";
 
 const options: Options = {
   definition: {
-    openapi: '3.0.0',
+    openapi: "3.0.0",
     info: {
-      title: 'Express API with Swagger',
-      version: '1.0.0',
-      description: 'A REST API application made with Express and documented with Swagger',
+      title: "Express API with Swagger",
+      version: "1.0.0",
+      description:
+        "A REST API application made with Express and documented with Swagger",
       contact: {
-        name: 'API Support',
-        email: 'support@example.com'
+        name: "API Support",
+        email: "support@example.com",
       },
     },
     servers: [
       {
-        url: 'http://localhost:3000',
-        description: 'Development server',
+        url: "http://localhost:3000",
+        description: "Development server",
       },
     ],
     components: {
       schemas: {
         User: {
-          type: 'object',
-          required: ['name', 'email'],
+          type: "object",
+          required: ["name", "email"],
           properties: {
             id: {
-              type: 'integer',
-              description: 'User ID auto-generated',
+              type: "integer",
+              description: "User ID auto-generated",
             },
             name: {
-              type: 'string',
-              description: 'User name',
+              type: "string",
+              description: "User name",
             },
             email: {
-              type: 'string',
-              format: 'email',
-              description: 'User email',
+              type: "string",
+              format: "email",
+              description: "User email",
             },
             role: {
-              type: 'string',
-              description: 'Admin, Vendor, or Customer',
+              type: "string",
+              description: "Admin, Vendor, or Customer",
             },
             password: {
-              type: 'string',
-              description: 'User password',
+              type: "string",
+              description: "User password",
             },
             created_at: {
-              type: 'string',
-              format: 'date-time',
-              description: 'Creation date',
+              type: "string",
+              format: "date-time",
+              description: "Creation date",
             },
             updated_at: {
-              type: 'string',
-              format: 'date-time',
-              description: 'Update date',
+              type: "string",
+              format: "date-time",
+              description: "Update date",
             },
           },
         },
         Error: {
-          type: 'object',
+          type: "object",
           properties: {
             error: {
-              type: 'string',
+              type: "string",
             },
             message: {
-              type: 'string',
+              type: "string",
             },
             details: {
-              type: 'array',
+              type: "array",
               items: {
-                type: 'object',
+                type: "object",
                 properties: {
                   field: {
-                    type: 'string',
+                    type: "string",
                   },
                   message: {
-                    type: 'string',
+                    type: "string",
                   },
                 },
               },
@@ -84,40 +84,42 @@ const options: Options = {
           },
         },
         LoginRequest: {
-          type: 'object',
-          required: ['email', 'password'],
+          type: "object",
+          required: ["email", "password"],
           properties: {
             email: {
-              type: 'string',
-              format: 'email',
+              type: "string",
+              format: "email",
             },
             password: {
-              type: 'string',
+              type: "string",
             },
           },
         },
         LoginResponse: {
-          type: 'object',
+          type: "object",
           properties: {
             token: {
-              type: 'string',
+              type: "string",
             },
           },
         },
       },
       securitySchemes: {
         bearerAuth: {
-          type: 'http',
-          scheme: 'bearer',
-          bearerFormat: 'JWT',
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
         },
       },
     },
-    security: [{
-      bearerAuth: [],
-    }],
+    security: [
+      {
+        bearerAuth: [],
+      },
+    ],
   },
-  apis: ['./src/routes/*.ts'], // Updated path for TypeScript files
+  apis: ["./src/routes/*.ts"], // Updated path for TypeScript files
 };
 
 export default options;
