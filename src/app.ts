@@ -7,6 +7,7 @@ import swaggerJSDoc from "swagger-jsdoc";
 import userRoutes from "./routes/userRoutes";
 import authRoutes from "./routes/authRoutes";
 import healthRoutes from "./routes/healthRoutes";
+import eventRoutes from "./routes/eventRoutes";
 import options from "./config/swagger.config";
 import { errorHandler } from "./middleware/errorHandler";
 
@@ -28,6 +29,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 app.use("/health", healthRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/events", eventRoutes);
 
 // Error handling
 app.use(errorHandler);

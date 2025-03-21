@@ -58,4 +58,3 @@ export async function closeDatabase(): Promise<void> {
 }
 
 export default sequelize;
-
