@@ -1,5 +1,7 @@
 import { Router } from 'express';
-import userController from '../controllers/userController';
+import { getAll, getById, create } from '../controllers/userController';
+import { authenticate, requireRole } from '../middleware/auth';
+import { UserRole } from '../types';
 
 const router = Router();
 
@@ -19,7 +21,7 @@ const router = Router();
  *               items:
  *                 $ref: '#/components/schemas/User'
  */
-router.get('/', userController.getAll);
+router.get('/', authenticate, getAll);
 
 /**
  * @swagger
@@ -41,7 +43,7 @@ router.get('/', userController.getAll);
  *             schema:
  *               $ref: '#/components/schemas/User'
  */
-router.get('/:id', userController.getById);
+router.get('/:id', authenticate, getById);
 
 /**
  * @swagger
@@ -63,6 +65,7 @@ router.get('/:id', userController.getById);
  *             schema:
  *               $ref: '#/components/schemas/User'
  */
-router.post('/create', userController.create);
+router.post('/create', authenticate, requireRole([UserRole.ADMIN]), create);
 
 export default router;
+

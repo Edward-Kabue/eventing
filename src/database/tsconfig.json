@@ -1,19 +1,19 @@
- // @ts-ignore
 {
-  // @ts-ignore
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/database",
-    "rootDir": "./",
-    "baseUrl": "./"
+    "rootDir": "../../src",
+    "baseUrl": "../../src"
   },
   "include": [
-    "./**/*.ts"
+    "./**/*.ts",
+    "../**/*.ts"
   ],
   "exclude": [
     "node_modules"
   ]
 }
+
 
 
 

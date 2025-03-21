@@ -1,8 +1,15 @@
+export enum UserRole {
+  ADMIN = 'admin',
+  VENDOR = 'vendor',
+  CUSTOMER = 'customer'
+}
+
 export interface User {
   id: number;
   name: string;
   email: string;
-  role?: string;
+  password: string;
+  role: UserRole;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -20,3 +27,18 @@ export interface ApiError {
   message: string;
   details?: Record<string, unknown>;
 }
+
+export interface Permission {
+  id: number;
+  name: string;
+  description: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface RolePermission {
+  roleId: string;
+  permissionId: number;
+}
+
+

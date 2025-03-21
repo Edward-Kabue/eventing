@@ -40,7 +40,11 @@ const options: Options = {
             },
             role: {
               type: 'string',
-              description: 'User role',
+              description: 'Admin, Vendor, or Customer',
+            },
+            password: {
+              type: 'string',
+              description: 'User password',
             },
             created_at: {
               type: 'string',
@@ -79,8 +83,39 @@ const options: Options = {
             },
           },
         },
+        LoginRequest: {
+          type: 'object',
+          required: ['email', 'password'],
+          properties: {
+            email: {
+              type: 'string',
+              format: 'email',
+            },
+            password: {
+              type: 'string',
+            },
+          },
+        },
+        LoginResponse: {
+          type: 'object',
+          properties: {
+            token: {
+              type: 'string',
+            },
+          },
+        },
+      },
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
       },
     },
+    security: [{
+      bearerAuth: [],
+    }],
   },
   apis: ['./src/routes/*.ts'], // Updated path for TypeScript files
 };
