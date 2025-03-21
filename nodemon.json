@@ -1,0 +1,16 @@
+{
+  "verbose": true,
+  "watch": [
+    "bin/",
+    "routes/",
+    "views/",
+    "public/",
+    "app.js"
+  ],
+  "ext": "js,json,pug,css",
+  "ignore": [
+    "node_modules/",
+    ".git/",
+    "*.test.js"
+  ]
+}
