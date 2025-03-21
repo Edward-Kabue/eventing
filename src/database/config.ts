@@ -40,22 +40,22 @@ const config: DatabaseConfig = {
   production: {
     username:
       process.env.PROD_DB_USER ||
-      (() => {
+      ((): string => {
         throw new Error("Production database username must be set!");
       })(),
     password:
       process.env.PROD_DB_PASSWORD ||
-      (() => {
+      ((): string => {
         throw new Error("Production database password must be set!");
       })(),
     database:
       process.env.PROD_DB_NAME ||
-      (() => {
+      ((): string => {
         throw new Error("Production database name must be set!");
       })(),
     host:
       process.env.PROD_DB_HOST ||
-      (() => {
+      ((): string => {
         throw new Error("Production database host must be set!");
       })(),
     port: parseInt(process.env.PROD_DB_PORT || "5432", 10),
