@@ -60,3 +60,31 @@ export interface RolePermission {
   permissionId: number;
 }
 
+export interface Event {
+  id: number;
+  title: string;
+  description: string;
+  date: Date;
+  location: string;
+  capacity: number;
+  price: number;
+  creatorId: number;
+  status: EventStatus;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export enum EventStatus {
+  DRAFT = "draft",
+  PUBLISHED = "published",
+  CANCELLED = "cancelled"
+}
+
+export interface CreateEventInput extends Omit<Event, "id" | "createdAt" | "updatedAt" | "status"> {
+  id?: never;
+  createdAt?: never;
+  updatedAt?: never;
+  status?: EventStatus;
+}
+
+
